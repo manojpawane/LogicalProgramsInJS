@@ -11,6 +11,7 @@ var response
 rl.question("Enter the number of coupons need to generate: ", (answer)=>{
     response = answer
     CouponsGeneration()
+    rl.close();
 });
 var numberOfCoupons = new Array(response)
 
