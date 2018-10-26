@@ -5,4 +5,4 @@ var rl = readline.createInterface(
         output:process.stdout
     }
 );
-exports.module = rl;
+exports.module.rl = rl;
