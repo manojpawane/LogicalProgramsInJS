@@ -6,12 +6,13 @@ var rl = readline.createInterface({
     output:process.stdout
 });
 
-var stopWatch = StopWatch.create();
 
-var StartStopWatch = function(){
-    return new Promise(function(resolve, reject){
+
+var StartStopWatch =async function(){
+    var stopWatch =await StopWatch.create();
+    return new Promise(async function(resolve, reject){
      try{
-        stopWatch.start();
+        await stopWatch.start();
         console.log('PRESS ENTER TO STOP THE STOPWATCH');
         rl.on('line', (input)=>{
             resolve(input);

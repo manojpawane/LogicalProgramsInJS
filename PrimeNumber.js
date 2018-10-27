@@ -9,6 +9,7 @@ var rl = readline.createInterface(
 rl.question('Please enter the minimum number of the range: ', (answer)=>{
     rl.question('please enter the maximum number of the range: ',async (answer2)=>{
        var primeNumber = await EvaluatePrimeNumber(answer, answer2)
+       var lengthOFArray = primeNumber.length;
        console.log('min range ' +answer);
        console.log('max range ' +answer2);
        console.log('Prime Number: '+primeNumber);
