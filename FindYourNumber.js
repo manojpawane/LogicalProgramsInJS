@@ -13,21 +13,17 @@ var Search = function(low, high){
         try{
         if(high - low === 1)
         {
-            console.log('answer found');
             resolve(low);
         }
         var mid = low + (high - low) / 2;
         console.log('Is it less than: '+mid);
          rl.on('line', (answer)=>{
              if(answer === 'true')
-             {    console.log('check 1: '+parseInt(high-low))
-                  console.log('testing true');
+             {   
                   resolve(Search(low, mid));
              }
              else
              {
-                 console.log('check 2: '+parseInt(high-low))
-                 console.log('testing false');
                  resolve(Search(mid, high));
              }
          })}
