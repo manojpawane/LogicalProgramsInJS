@@ -11,9 +11,10 @@ var rl =  readline.createInterface(
 var Search = function(low, high){
     return new Promise(function(resolve, reject){
         try{
-        if(high - low == 1)
+        if(high - low === 1)
         {
-         resolve(low);
+            console.log('answer found');
+            resolve(low);
         }
         var mid = low + (high - low) / 2;
         console.log('Is it less than: '+mid);
@@ -21,13 +22,13 @@ var Search = function(low, high){
              if(answer === 'true')
              {    console.log('check 1: '+parseInt(high-low))
                   console.log('testing true');
-                  return(Search(low, mid));
+                  resolve(Search(low, mid));
              }
              else
              {
                  console.log('check 2: '+parseInt(high-low))
                  console.log('testing false');
-                 return(Search(mid, high));
+                 resolve(Search(mid, high));
              }
          })}
          catch(error)
@@ -46,3 +47,8 @@ var FindYourNumber = async function(){
 }
 
 FindYourNumber();
+// int k = Integer.parseInt(args[0]);
+// int n = (int) Math.pow(2, k);
+// StdOut.printf("Think of an integer between %d and %d\n", 0, n-1);
+// int secret = search(0, n);
+// StdOut.printf("Your number is %d\n", secret);
