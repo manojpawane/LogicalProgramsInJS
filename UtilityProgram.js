@@ -137,3 +137,8 @@ var Utility = async function(){
 
 
 Utility();
+
+
+module.exports = {
+BinarySearchFunction: binarySearch()
+}
