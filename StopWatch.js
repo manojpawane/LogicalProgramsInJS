@@ -1,53 +1,42 @@
 var readline = require('readline');
-var StopWatch =  require('node-stopwatch').Stopwatch;
 
-var rl = readline.createInterface({
-    input:process.stdin,
-    output:process.stdout
+
+var read = readline.createInterface({
+input: process.stdin,
+output: process.stdout
 });
 
+var startTime;
+var stopTime;
+var elapsedTime;
 
-
-var StartStopWatch =async function(){
-    var stopWatch =await StopWatch.create();
-    return new Promise(async function(resolve, reject){
-     try{
-        await stopWatch.start();
-        console.log('PRESS ENTER TO STOP THE STOPWATCH');
-        rl.on('line', (input)=>{
-            resolve(input);
-        })
-     }   
-     catch(error)
-     {
-        reject(error)
-     }
-    })
+function stopWatch() {
+read.question("Enter 1 to start watch : ",(start) => {
+startTime = getCurrentTime();
+if(start) {
+read.question("Enter 0 to stop watch : ",(stop) => {
+stopTime = getCurrentTime();
+elapsedTime = elapsedTime(startTime,stopTime);
+/*
+* Prints the calculated elapsed time between start and stop.
+*/
+console.log("Total elapsed time in miliseconds: "+elapsedTime+"ms");
+console.log("Total elapsed time in seconds: "+(elapsedTime/1000)+"sec.");
+});
+}
+});
 }
 
-var StopWatchStopped = function(){
-     new Promise(function(resolve, reject){
-     try{
-       resolve(stopWatch.stop());
-     }   
-     catch(error)
-     {
-        reject(error)
-     }
-    })
-}
 
-var ElapsedTimeForStopWatch =  function(){
-    console.log('Elapsed Time in Seconds: '+stopWatch.elapsed.seconds);
-}
+var getCurrentTime = function() {
+    var d = new Date();
+    var n = d.getTime();
+    return n;
+    }
+    
+  var  elapsedTime = function(start, stop) {
+    elapsesTime = stop - start;
+    return elapsesTime;
+    }
 
- var StopWatchApplication = async function()
- {
-    await StartStopWatch();
-    await StopWatchStopped();
-    await ElapsedTimeForStopWatch();
- }
-
- StopWatchApplication();
-
- 
+    stopWatch();
