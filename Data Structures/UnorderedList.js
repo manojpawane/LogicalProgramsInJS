@@ -43,16 +43,17 @@ Linklist.prototype.addToHead = function(value){
     this.head = newNode;
 }
 
+const list = new Linklist();
 var readFileFromData = async function(){
     var data =  await ReadFile();
     return new Promise(function(resolve, reject){
         try{
-            const list = new Linklist();
             if(data){
                 for(var i = 0;i<data.length;i++){
                     list.addToHead(data[i]);
                 }
             }
+            
             resolve(list);
     
         }
@@ -64,28 +65,56 @@ var readFileFromData = async function(){
         
 }
 
-Linklist.prototype.search = function(searchValue){
-    let current = this.head;
-    while(currentNode){
-        if(currentNode.value === searchValue){
-            return currentNode;
-        }
-        currentNode = currentNode.next;
-    }
-    return null;
-}
+// Linklist.prototype.delete = function(data, deleteWord){
+//     return new Promise(resolve, reject){
+//         try {
+            
+//         } catch (error) {
+//             reject(error)
+//         }
+//     }
+// }
 
+Linklist.prototype.search = function(data, searchValue){
+    let currentNode = this.head;
+    return new Promise(function(resolve, reject){
+        try {
+            console.log('current node: '+currentNode);
+            while(currentNode){
+                if(currentNode.value === searchValue){
+                    resolve(currentNode);
+                }
+                currentNode = currentNode.next;
+            }
+            resolve(null);            
+        } catch (error) {
+            reject(error)
+        }
+    })
+}
 
 var startList =async function(){
     var data = await readFileFromData();
     console.log(data);
-    while(data)
-    {
-        console.log('data: '+data.head.value)
-        data = data.head.next;
-        //console.log(`Middle node value: ${data.head.next.value}`);
+    var response
+    if(data){
+        rl.question('Please enter the word you need to delete: ',async (answer)=>{
+            response = answer
+            if(response){
+                var searchedWord = await data.search(data,response);
+                // if(searchedWord != null){
+
+                // }
+                // 
+                console.log('data for search word: '+searchedWord.value);
+             }
+             console.log('response: '+response);
+             rl.close();
+        })
     }
     
+   
+
 }
 
 startList();
