@@ -40,15 +40,6 @@ enqueue(value){
      }
  }
 
- display(){
-  let current = this.head;
-//   while(current){
-//       console.log(current.value);
-//       current = current.next;
-//   }
-    return current;
- }
-
  size(){
      let current = this.head;
      let counter = 0;
