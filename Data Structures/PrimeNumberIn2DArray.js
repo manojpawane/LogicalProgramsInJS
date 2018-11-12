@@ -11,11 +11,8 @@ rl.question('Please enter the minimum number of the range: ', (answer)=>{
        var primeNumber = await EvaluatePrimeNumber(answer, answer2)
        var lengthOFArray = primeNumber.length;
        var primeNumberRep = await primeNumberRepresentation(primeNumber, answer);
-    //    console.log('min range ' +answer);
-    //    console.log('max range ' +answer2);
-    //    console.log('Prime Number: '+primeNumber);
     for(var o = 0; o < primeNumberRep.length; o++){
-        console.log(primeNumberRep[o]);
+        console.log(primeNumberRep[o].join(' '));
     }
        
        rl.close();
