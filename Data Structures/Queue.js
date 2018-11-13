@@ -14,7 +14,6 @@ class Queue{
     }
 
 enqueue(value){
-    console.log('In queue file');
     let newNode = new Node(value, null, this.tail)
     if(this.tail){
         this.tail.next = newNode;
