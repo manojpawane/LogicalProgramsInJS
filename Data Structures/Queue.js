@@ -28,9 +28,8 @@ enqueue(value){
      if(!this.head){
          console.log('Queue empty');
      }
-     else{
          this.head = this.head.next;
-     }
+     
      if(this.head){
          this.head.prev = null;
      }

@@ -22,6 +22,10 @@ class Stack{
             }
             this.head = newNode;
     }
+
+    pop(){
+        
+    }
 }
 
 
