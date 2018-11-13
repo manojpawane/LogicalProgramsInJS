@@ -68,10 +68,6 @@ var startUp = async function(){
             }
         }
     
-   
-    // for(var n = 0; n < arr2.length; n++){
-    //   console.log(arr2[n].join(' '));
-    // }
     let current = queue.head;
     while(current){
         console.log(current.value);
