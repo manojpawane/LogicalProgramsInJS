@@ -50,22 +50,17 @@ var startUp = async function(){
         days[month] = 29;
     }
     console.log('      ' + months[month] + ' ' + year);
-    console.log('  S    M    Tu    W    Th    F    S');
+    console.log('  S   M   Tu   W   Th   F   S');
     let da =await day(month, 1, year);
     var k = 0;
 
     for(var i = 0; i < da; i++){
-        arr1[k] = '';
+        arr1[k] = 0;
         k++;
     }
         for(var i = 1; i <= days[month]; i++){
-            //if(i >= 10){
                 arr1[k] = i;
-            // }
-            // else{
-            //     arr1[k] = '' + i;
-            // }
-            k++;
+                k++;
             if(((i*1 + da) % 7 == 0) || (i == days[month])){
                 queue.enqueue(arr1);
                 arr1 = [];
