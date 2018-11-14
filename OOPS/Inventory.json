@@ -1,0 +1,54 @@
+{
+   "Rice": [
+        {
+            "name":"Rice 1",
+            "price":25,
+            "weight": 15
+        },
+        {
+            "name":"Rice 2",
+            "price":35,
+            "weight": 15
+        },
+        {
+            "name":"Rice 3",
+            "price":45,
+            "weight": 25
+        }
+    ],
+    "Wheat":[
+        {
+            "name":"Wheat 1",
+            "price": 30,
+            "weight": 15
+        },
+        {
+            "name":"Wheat 2",
+            "price":35,
+            "weight": 15
+        },
+        {
+            "name":"Wheat 3",
+            "price":45,
+            "weight": 25
+        }
+    ],
+    "Pulses":[
+        {
+            "name":"Pulses 1",
+            "price": 30,
+            "weight": 15
+        },
+        {
+            "name":"Pulses 2",
+            "price":35,
+            "weight": 15
+        },
+        {
+            "name":"Pulses 3",
+            "price":45,
+            "weight": 25
+        }
+    ]
+
+}
