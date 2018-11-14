@@ -3,7 +3,7 @@ var args = process.argv.slice(2);
 var month = args[0];
 var year = args[1];
 
-var Queue = require('./');
+var Stack = require('./StackUtilityForAnagram');
 
 var day = function(month, daay, year){
     return new Promise(function(resolve, reject){
@@ -40,8 +40,8 @@ var isLeapYear = function(year){
 var months = ["","january", "february", "march", "april", "may", "june" , "july", "august", "september","october", "november", "december"]
 
 var days = [0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
-var queue =  new Queue();
-var daysQueue = new Queue();
+var stack =  new Stack();
+// var daysQueue = new Queue();
 var startUp = async function(){
     
     var arr1 = new Array();
@@ -62,17 +62,23 @@ var startUp = async function(){
                 arr1[k] = i;
                 k++;
             if(((i*1 + da) % 7 == 0) || (i == days[month])){
-                queue.enqueue(arr1);
+                stack.push(arr1);
                 arr1 = [];
                 k = 0;
             }
         }
-    
-    let current = queue.head;
+    var stack2 = new Stack();
+    let current = stack.head;
     while(current){
-        console.log(current.value);
+        let number = stack.pop();
+        stack2.push(number);
         current = current.next;
     }
+     let currentNode = stack2.head;
+     while(currentNode){
+         console.log(currentNode.value);
+         currentNode = currentNode.next;
+     }
 }
 
 startUp();
