@@ -18,7 +18,7 @@ enqueue(value){
     if(this.tail){
         this.tail.next = newNode;
     }
-    else{
+    else{ 
         this.head = newNode;
     }
     this.tail = newNode;
