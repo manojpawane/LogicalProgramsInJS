@@ -109,6 +109,31 @@ var chooseProduct = function(){
 var addProduct = function(){
     return new Promise(function(resolve, reject){
         try {
+            // async.series([
+            //     function(callback){
+            //         rl.question('Please enter the name of product: ',(answer1)=>{
+            //             callback(null, answer1);
+            //         });
+            //     },
+            //     function(data1, callback){
+            //         rl.question('Please enter the id for product: ',(answer2)=>{
+            //             callback(null, answer2);
+            //         });
+            //     },
+            //     function(data2, callback){
+            //         rl.question('please enter the price for product: ',(answer3)=>{
+            //             callback(null, answer3);
+            //         });
+            //     },
+            //     function(data3, callback){
+            //         rl.question('Please enter async jhgthe weight of the product: ',async (answer4)=>{
+            //             callback(null, answer4);
+            //         });
+            //     }
+            // ], 
+            // function(error, data){
+
+            // })
                 rl.question('Please enter the name of prodct: ',(answer1)=>{
                     rl.question('Please enter the id for product: ',(answer2)=>{
                         rl.question('please enter the price for product: ',(answer3)=>{
@@ -138,7 +163,6 @@ var viewProduct =async function(){
                      dataFromFile.rice[i].weight   + '        '+
                      dataFromFile.rice[i].weight * dataFromFile.rice[i].price);
     }
-    console.log('\n');
 
     /// logic to display json data of wheat which is present in file
     for(let i = 0; i < dataFromFile.wheat.length; i++){
@@ -148,8 +172,6 @@ var viewProduct =async function(){
                      dataFromFile.wheat[i].weight   + '        '+
                      dataFromFile.wheat[i].weight * dataFromFile.wheat[i].price);
     }
-    console.log('\n');
-
     /// logic to display json data of pulses which is present in file
     for(let i = 0; i < dataFromFile.pulses.length; i++){
         console.log(dataFromFile.pulses[i].id  +  '   ' +
@@ -209,6 +231,7 @@ var deleteProduct = function(){
    
 }
 
+/// logic to delete rice
 var deleteRice = function(){
     return new Promise(async function(resolve, reject){
         try {
@@ -260,35 +283,6 @@ var deleteWheat = function(){
     }
    }
    resolve(wheat);
-        } catch (error) {
-            reject(error);
-        }
-    })
-}
-
-/// logic to delete rice
-var deleteRice = function(){
-    return new Promise(async function(resolve, reject){
-        try {
-            var dataFromFile = await readFileForJson();
-            console.log('Id   Name   Price   Quantity   Total');
-    
-    /// logic to display json data of Rice which is present in file
-    for(let i = 0; i < dataFromFile.rice.length; i++){
-        console.log(dataFromFile.rice[i].id  +  '   ' +
-                    dataFromFile.rice[i].name  +  '   ' +
-                     dataFromFile.rice[i].price + '      ' +
-                     dataFromFile.rice[i].weight + '      '+
-                     dataFromFile.rice[i].weight * dataFromFile.rice[i].price);
-    }
-    var response = await deleteOption();
-
-   for( var j = 0; j < rice.length; j++){ 
-    if ( rice[j].id === response) {
-        rice.splice(j, 1); 
-    }
-   }
-   resolve(rice);
         } catch (error) {
             reject(error);
         }
