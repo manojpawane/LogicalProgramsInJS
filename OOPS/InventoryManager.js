@@ -10,6 +10,7 @@ var rl = readline.createInterface(
 
 var Linkedlist = require('./LinkedList');
 
+/// model for product details
 var productDetails = function(id, name, weight, price){
    this.id = id;
    this.name = name;
@@ -17,17 +18,20 @@ var productDetails = function(id, name, weight, price){
    this.price = price;
 }
 
+/// model for product update
 var Product = function(rice, wheat, pulses){
  this.rice = rice;
  this.wheat = wheat;
  this.pulses= pulses;
 }
 
+/// array declarion
 var rice = new Array();
 var wheat = new Array();
 var pulses = new Array();
 var linklist = new Linkedlist();
 
+/// logic to update information in file
 var dataEntered = function(){
     console.log('inside the dta enterd');
     var prod = new Product(rice,wheat, pulses);
@@ -47,7 +51,7 @@ var startUp = async function(){
 }
 
 
-
+/// switch control for CRUD operation
 var switchControl =  function(){
     return new Promise(function(resolve, reject){
         try {
@@ -55,7 +59,8 @@ var switchControl =  function(){
                 switch(answer){
                     case '1': await chooseProduct() ;
                               break;
-                    case '2': break;
+                    case '2': await updateProduct();
+                              break;
                     case '3': await deleteProduct();
                               break;
                     case '4': await viewProduct();
@@ -70,6 +75,7 @@ var switchControl =  function(){
     })
 }
 
+/// choose product logic
 var chooseProduct = function(){
     return new Promise(function(resolve, reject){
         try {
@@ -99,6 +105,7 @@ var chooseProduct = function(){
     })
 }
 
+/// add product logic
 var addProduct = function(){
     return new Promise(function(resolve, reject){
         try {
@@ -118,6 +125,7 @@ var addProduct = function(){
     })
 }
 
+/// view product logic
 var viewProduct =async function(){
     var dataFromFile = await readFileForJson();
     console.log('Id   Name   Price   Quantity   Total');
@@ -172,6 +180,7 @@ var readFileForJson = function(){
     })
 }
 
+/// logic to delete the product
 var deleteProduct = function(){
     return new Promise(function(resolve, reject){
         try {
@@ -228,6 +237,7 @@ var deleteRice = function(){
     })
 }
 
+/// logic to delete wheat information
 var deleteWheat = function(){
     return new Promise(async function(resolve, reject){
         try {
@@ -256,6 +266,7 @@ var deleteWheat = function(){
     })
 }
 
+/// logic to delete rice
 var deleteRice = function(){
     return new Promise(async function(resolve, reject){
         try {
@@ -284,6 +295,7 @@ var deleteRice = function(){
     })
 }
 
+/// logic to delete pulses
 var deletePulses = function(){
     return new Promise(async function(resolve, reject){
         try {
@@ -322,6 +334,221 @@ var deleteOption = function(){
             reject(error);
         }
     })
+}
+
+/// method to select which variety is need to update
+var updateProduct = function(){
+    return new Promise(function(resolve, reject){
+        try {
+            console.log('1. Update Rice');
+            console.log('2. Update Wheat');
+            console.log('3. Update Pulses');
+            rl.question('Please enter the choice to update your data',async (answer)=>{
+                switch(answer){
+                    case '1':await updateRice();
+                             await dataEntered();
+                             break;
+                    case '2':await updateWheat();
+                            await dataEntered();
+                            break;
+                    case '3':await updatePulses();
+                             await dataEntered();
+                             break;
+                }
+                resolve(answer);
+            })
+
+        } catch (error) {
+            reject(error)
+        }
+    })
+}
+
+/// logic to update information for rice
+var updateRice = function(){
+    return new Promise(async function(resolve, reject){
+        try {
+            var dataFromFile = await readFileForJson();
+            console.log('Id   Name   Price   Quantity   Total');
+    
+    /// logic to display json data of Rice which is present in file
+    for(let i = 0; i < dataFromFile.rice.length; i++){
+        console.log(dataFromFile.rice[i].id  +  '   ' +
+                    dataFromFile.rice[i].name  +  '   ' +
+                     dataFromFile.rice[i].price + '      ' +
+                     dataFromFile.rice[i].weight + '      '+
+                     dataFromFile.rice[i].weight * dataFromFile.rice[i].price);
+            var id = await getUpdateId();
+                     displayChoice();
+            var choice = await getChoice();
+            var information = await getUpdateInformation(); 
+            console.log('pl'+id);
+            
+            /// this loop is used to update specific information
+            for(var ij = 0;ij < rice.length; ij++){
+                console.log(rice[ij].id);
+                if(rice[ij].id === id){
+                    console.log('choice: '+choice);
+                    if(choice === '1'){
+                        console.log('one in if');
+                        rice[ij].name = information;
+                    }
+                    else if(choice === '2'){  
+                        console.log('one in else if');
+                        rice[ij].price = information;
+                    }
+                    else{
+                        console.log('in test');
+                        rice[ij].weight = information;
+                    }
+                }
+            }         
+            console.log('hi')    ;
+        resolve(rice);
+    }
+        } catch (error) {
+            reject(error)       ;
+        }
+    })
+}
+
+/// logic to update information for wheat
+var updateWheat = function(){
+    return new Promise(async function(resolve, reject){
+        try {
+            var dataFromFile = await readFileForJson();
+            console.log('Id   Name   Price   Quantity   Total');
+    
+    /// logic to display json data of Rice which is present in file
+    for(let i = 0; i < dataFromFile.wheat.length; i++){
+        console.log(dataFromFile.wheat[i].id  +  '   ' +
+                    dataFromFile.wheat[i].name  +  '   ' +
+                     dataFromFile.wheat[i].price + '      ' +
+                     dataFromFile.wheat[i].weight + '      '+
+                     dataFromFile.wheat[i].weight * dataFromFile.wheat[i].price);
+            var id = await getUpdateId();
+                     displayChoice();
+            var choice = await getChoice();
+            var information = await getUpdateInformation(); 
+            /// this loop is used to update specific information
+            for(var ij = 0;ij < wheat.length; ij++){
+                console.log(wheat[ij].id);
+                if(wheat[ij].id === id){
+                    console.log('choice: '+choice);
+                    if(choice === '1'){
+                        console.log('one in if');
+                        wheat[ij].name = information;
+                    }
+                    else if(choice === '2'){  
+                        console.log('one in else if');
+                        wheat[ij].price = information;
+                    }
+                    else{
+                        console.log('in test');
+                        wheat[ij].weight = information;
+                    }
+                }
+            }         
+            console.log('hi')    ;
+        resolve(wheat);
+    }
+        } catch (error) {
+            reject(error)       ;
+        }
+    })
+}
+
+/// logic to update information for pulses
+var updatePulses = function(){
+    return new Promise(async function(resolve, reject){
+        try {
+            var dataFromFile = await readFileForJson();
+            console.log('Id   Name   Price   Quantity   Total');
+    
+    /// logic to display json data of Rice which is present in file
+    for(let i = 0; i < dataFromFile.pulses.length; i++){
+        console.log(dataFromFile.pulses[i].id  +  '   ' +
+                    dataFromFile.pulses[i].name  +  '   ' +
+                     dataFromFile.pulses[i].price + '      ' +
+                     dataFromFile.pulses[i].weight + '      '+
+                     dataFromFile.pulses[i].weight * dataFromFile.pulses[i].price);
+            var id = await getUpdateId();
+                     displayChoice();
+            var choice = await getChoice();
+            var information = await getUpdateInformation(); 
+            
+            /// this loop is used to update specific information
+            for(var ij = 0;ij < pulses.length; ij++){
+                console.log(pulses[ij].id);
+                if(pulses[ij].id === id){
+                    console.log('choice: '+choice);
+                    if(choice === '1'){
+                        console.log('one in if');
+                        pulses[ij].name = information;
+                    }
+                    else if(choice === '2'){  
+                        console.log('one in else if');
+                        pulses[ij].price = information;
+                    }
+                    else{
+                        console.log('in test');
+                        pulses[ij].weight = information;
+                    }
+                }
+            }         
+            console.log('hi')    ;
+        resolve(pulses);
+    }
+        } catch (error) {
+            reject(error)       ;
+        }
+    })
+}
+
+/// method to display the choice to update
+var displayChoice = function(){
+    console.log('1. Update Name. ');
+    console.log('2. Update Price ');
+    console.log('3. Update Weight ');
+}
+
+///  method to know which information need to update
+var getChoice = function(){
+    return new Promise(function(resolve, reject){
+        try {
+            rl.question('Please enter your choice to edit the information: ',(answer)=>{
+                resolve(answer);
+            })
+        } catch (error) {
+            reject(error);
+        }
+    })
+    }
+
+/// method to get id for which information need to update
+var getUpdateId = function(){
+return new Promise(function(resolve, reject){
+    try {
+        rl.question('Please enter the Id to which information is to edit: ',async (answer)=>{
+            resolve(answer);
+        })
+    } catch (error) {
+        reject(error);
+    }
+})
+}
+
+/// method to get the update information which need to update
+var getUpdateInformation = function(){
+return new Promise(function(resolve, reject){
+    try {
+        rl.question('Please enter the information to update: ',(answer)=>{
+            resolve(answer);
+        })
+    } catch (error) {
+        reject(error);
+    }
+})
 }
 
 startUp();
