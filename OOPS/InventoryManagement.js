@@ -23,7 +23,7 @@ var readFileForJson = function(){
 
 var startUp =async function(){
     var dataFromFile = await readFileForJson();
-    // console.log(dataFromFile.Rice[0].Price);
+    var data = JSON.stringify(dataFromFile);
     console.log('Name   Price   Quantity   Total');
     
     /// logic to display json data of Rice which is present in file
