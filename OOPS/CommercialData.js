@@ -1,60 +1,120 @@
+'use strict'
+
 class Stock{
-    constructor(id, name, availableShares, price){
-        this.Id = id;
-        this.Name = name;
-        this.AvailableShares = availableShares;
-        this.Price = price;
+    constructor(){
+    }
+
+    get id(){
+        return this._id;
+    }
+
+    set id(id){
+        this._id = id;
+    }
+
+    get name(){
+        return this._name;
+    }
+
+    set name(name){
+         this._name = name;
+    }
+
+    get availableShares(){
+        return this._availableShares;
+    }
+
+    set availableShares(availableShares){
+        this._availableShares = availableShares;
+    }
+
+    get price(){
+       return this._price;
+    }
+
+    set price(price){
+        this._price = price;
     }
 }
 
 class Customer{
-    constructor(Id, Name, TotalValue){
-        this.Id = id;
-        this.Name = name;
-        this.TotalValue = totalValue;
+    constructor(){
     }
+    
+    get id(){
+        return this._id;
+    }
+
+    set id(id){
+        this._id = id;
+    }
+
+    get name(){
+        return this._name;
+    }
+
+    set name(newName){
+        this._name = newName;
+    }
+   
+    get totalValue(){
+        return this._totalValue;
+    }
+
+    set totalValue(totalValue){
+        this._totalValue = totalValue;
+    }
+    
 }
 
 class Transaction{
 
-    constructor(nameOfCustomer, stockName, transactionType, time, noOfShares){
-        this.NameOfCustomer = nameOfCustomer;
-        this.StockName = stockName;
-        this.TransactionType = transactionType;
-        this.Time = time;
-        this.NoOfShares = noOfShares;
+    constructor(){
+    }
+
+    get nameOfCustomer(){
+        return this._nameOfCustomer;
+    }
+
+    set nameOfCustomer(nameOfCustomer){
+        this._nameOfCustomer = nameOfCustomer;
+    }
+
+    get stockName(){
+        return this._stockName;
+    }
+
+    set stockName(stockName){
+        this._stockName = stockName;
+    }
+
+    get transactionType(){
+        return this._transactionType;
+    }
+
+    set transactionType(transactionType){
+        this._transactionType = transactionType;
+    }
+
+    get transactionTime(){
+        return this._transactionTime;
+    }
+
+    set transactionTime(transactionTime){
+        this._transactionTime = transactionTime;
+    }
+
+    get numberOfShares(){
+        return this._numberOfShares;
+    }
+
+    set numberOfShares(numberOfShares){
+        this._nameOfShares = this.numberOfShares;
     }
 }
 
-
-
-
-
-
-
-
-class Person {
-    constructor() {
-      this.id = 'id_1';
-    }
-    set name(name) {
-      this._name = name.charAt(0).toUpperCase() + name.slice(1);
-    }
-    get name() {
-      return this._name;
-    }
-    set age(age){
-      this._age = age;
-    }
-    get age(){
-        return this._age;
-    }
-    sayHello() {
-      console.log('Hello, my name is ' + this.name + ', I have ID: ' + this.id  + ' , My age is ' + this.age);
-    }
-  }
-  
-  var justAGuy = new Person();
-  justAGuy.name = 'martin'; // The setter will be used automatically here.
-  justAGuy.age = 25;
-  justAGuy.sayHello(); // Will output 'Hello, my name is Martin, I have ID: id_
+module.exports = {
+Stock : Stock,
+Customer : Customer,
+Transaction : Transaction
+}

@@ -1,0 +1,22 @@
+{
+    "Stock":[
+        {
+            "id": 11,
+            "name": "Twitter",
+            "noOfShares": 50000,
+            "pricePerShare": 1000
+        },
+        {
+            "id": 22,
+            "name": "facebook",
+            "noOfShares": 150000,
+            "pricePerShare": 21000
+        },
+        {
+            "id": 33,
+            "name": "Oracle",
+            "noOfShares": 50000,
+            "pricePerShare": 1500
+        }
+    ]
+}

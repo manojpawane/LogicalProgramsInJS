@@ -1,0 +1,19 @@
+{
+    "Customer" : [
+        {
+            "id": 1,
+            "name": "John",
+            "totalValuation": 0
+        },
+        {
+            "id": 2,
+            "name": "Mike",
+            "totalValuation": 0
+        },
+        {
+            "id": 3,
+            "name": "Harry",
+            "totalValuation": 0
+        }
+    ]
+}
