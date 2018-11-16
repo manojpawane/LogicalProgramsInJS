@@ -1,6 +1,6 @@
-'use strict'
 
-class Stock{
+
+ class Stock{
     constructor(){
     }
 
@@ -68,9 +68,9 @@ class Customer{
 }
 
 class Transaction{
+constructor(){
 
-    constructor(){
-    }
+}
 
     get nameOfCustomer(){
         return this._nameOfCustomer;
@@ -109,12 +109,10 @@ class Transaction{
     }
 
     set numberOfShares(numberOfShares){
-        this._nameOfShares = this.numberOfShares;
+        this._nameOfShares = numberOfShares;
     }
 }
 
-module.exports = {
-Stock : Stock,
-Customer : Customer,
-Transaction : Transaction
-}
+module.exports.Transaction = Transaction;
+module.exports.Customer = Customer;
+module.exports.Stock = Stock;

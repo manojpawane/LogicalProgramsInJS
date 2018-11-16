@@ -1,6 +1,7 @@
 'use strict'
 var readline = require('readline');
 var fs = require('fs');
+var Linkedlist = require('./LinkedList');
 var rl = readline.createInterface(
     {
         input: process.stdin,
@@ -8,8 +9,7 @@ var rl = readline.createInterface(
     }
 )   
 
-var CommercialData = require('./CommercialData');
-var Transaction = new CommercialData.Transaction();
+const {Transaction, Customer, Stock} = require('./CommercialData');
 
 var startUp =async function(){
     var response = null;
@@ -55,7 +55,7 @@ var switchControl = function(){
                              break;
                     case '4':
                              break;
-                    case '5':
+                    case '5':await showTransaction();
                              break;
                 }
               resolve(answer)  ;
@@ -106,15 +106,36 @@ var viewStock = function(){
 
 
 }
-var transaction = new Transaction();
+// var transaction = new Transaction('Name','STock','Buy', 'NIGHt', '7');
+
+var showTransaction = function(){
+    return new Promise(async function(resolve, reject){
+        try {
+            var transactionData = await readFile('commerTrans.json');
+            console.log('Customer Name    Stock Name     Transaction Type   Transaction Time   No. of Shares');
+            console.log(transactionData.length);
+            console.log();
+            // for(let transData = 0; transData < transactionData.length ; transData ++){
+            //     let nameOfCust = transactionData[transData]._nameOfCustomer;
+            //     let stockNam = transactionData[transData]._stockName;
+            //     let transType = transactionData[transData]._transactionType;
+            //     let transTime = transactionData[transData]._transactionTime;
+            //     let nameOfShare = transactionData[transData]._nameOfShares;
+            //     console.log(nameOfCust+'   '+stockNam+'   '+transType+'   '+transTime+'   '+nameOfShare);
+            // }
+            resolve(transactionData);
+        } catch (error) {
+            reject(error)
+        }
+    })
+}
 var transactionDetails = new Array();
 
 var transactionForStock = function(nameOfCust, stockName, transactionType, noOfShare){
     return new Promise(function(resolve, reject){
         try {
-            var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
-            var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
-            var dateTime = date+' '+time;
+            var transaction = new Transaction();
+            var dateTime = new Date();
             transaction.nameOfCustomer = nameOfCust;
             transaction.stockName = stockName;
             transaction.transactionType = transactionType;
@@ -128,15 +149,7 @@ var transactionForStock = function(nameOfCust, stockName, transactionType, noOfS
     })
 }
 
-var writeIntoFile = new function(data){
-    return new Promise(function(resolve, reject){
-        try {
-            fs.writeIntoFile('commerTrans.json', data);
-        } catch (error) {
-            reject(error)
-        }
-    })
-}
+
 
 var trans =async function(){
    var resp = await transactionForStock('John','facebook','buy',10);
@@ -146,7 +159,19 @@ var trans =async function(){
    var resp2 = await transactionForStock('Mike','facebook','sell',510);
    await writeIntoFile(JSON.stringify(resp2));
    var resp3 = await transactionForStock('harry','oracle','buy',104);
+   console.log(resp3);
    await writeIntoFile(JSON.stringify(resp3));
     
+}
+
+var writeIntoFile =  function(data){
+    return new Promise(function(resolve, reject){
+        try {
+            fs.writeFileSync('commerTrans.json', data);
+            resolve(data);
+        } catch (error) {
+            reject(error)
+        }
+    })
 }
 startUp();
