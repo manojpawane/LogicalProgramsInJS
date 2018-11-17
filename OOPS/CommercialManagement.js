@@ -111,18 +111,20 @@ var viewStock = function(){
 var showTransaction = function(){
     return new Promise(async function(resolve, reject){
         try {
+            var transaction1 = new Transaction();
             var transactionData = await readFile('commerTrans.json');
             console.log('Customer Name    Stock Name     Transaction Type   Transaction Time   No. of Shares');
             console.log(transactionData.length);
             console.log();
-            // for(let transData = 0; transData < transactionData.length ; transData ++){
-            //     let nameOfCust = transactionData[transData]._nameOfCustomer;
-            //     let stockNam = transactionData[transData]._stockName;
-            //     let transType = transactionData[transData]._transactionType;
-            //     let transTime = transactionData[transData]._transactionTime;
-            //     let nameOfShare = transactionData[transData]._nameOfShares;
-            //     console.log(nameOfCust+'   '+stockNam+'   '+transType+'   '+transTime+'   '+nameOfShare);
-            // }
+            for(let transData = 0; transData < transactionData.length ; transData ++){
+                transaction1 = transactionData[transData];
+                let nameOfCust = transaction1._nameOfCustomer;
+                let stockNam =  transaction1._stockName;
+                let transType = transaction1._transactionType;
+                let transTime = transaction1._transactionTime;
+                let nameOfShare = transaction1._nameOfShares;
+                console.log(nameOfCust+'   '+stockNam+'   '+transType+'   '+transTime+'   '+nameOfShare);
+            }
             resolve(transactionData);
         } catch (error) {
             reject(error)
