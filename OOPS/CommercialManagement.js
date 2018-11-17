@@ -8,6 +8,8 @@ var rl = readline.createInterface(
         output:process.stdout
     }
 )   
+var Stack = require('.././Data Structures/Stack');
+var stack = new Stack();
 
 /// Importing models from utility class
 const {Transaction, Customer, Stock} = require('./CommercialData');
@@ -58,10 +60,25 @@ var switchControl = function(){
                     case '2':await viewStock();
                              break;
                     /// option 3 is use to buy the stock
-                    case '3':await buyStock();
+                    case '3':stack.push('buy');
+                             var res = await buyStock();
+                             console.log(res);
+                             if(res === 'buy'){
+                                 console.log('share buy successful');
+                             }
+                             else{
+                                 console.log('Failure');
+                             }
                              break;
                     /// option 4 is use to sell the stock
-                    case '4':await sellStock();
+                    case '4':stack.push('sell');
+                             var respo = await sellStock();
+                             if(respo === 'sell'){
+                                 console.log('shares sell successful');
+                             }
+                             else{
+                                 console.log('Failure');
+                             }
                              break;
                     /// option 5 is use to display transaction held                             
                     case '5':await showTransaction();
@@ -215,7 +232,8 @@ var sellStock = function(){
                 await writeIntoFile(JSON.stringify(customerData), 'Customer.json');
                 /// calling write function to write the data into stock file
                 await writeIntoFile(JSON.stringify(stockData), 'Stock.json');
-                resolve(transData);
+                var respSell = stack.pop();
+                resolve(respSell);
              }
             
         } catch (error) {
@@ -260,7 +278,8 @@ var buyStock = function(){
                 await writeIntoFile(JSON.stringify(customerData), 'Customer.json');
                 /// calling function to write into stock file
                 await writeIntoFile(JSON.stringify(stockData), 'Stock.json');
-                resolve(transData);
+                var resBuy = stack.pop();
+                resolve(resBuy);
              }
             
         } catch (error) {
