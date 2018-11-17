@@ -62,7 +62,6 @@ var switchControl = function(){
                     /// option 3 is use to buy the stock
                     case '3':stack.push('buy');
                              var res = await buyStock();
-                             console.log(res);
                              if(res === 'buy'){
                                  console.log('share buy successful');
                              }
