@@ -376,28 +376,22 @@ var updateRice = function(){
                      displayChoice();
             var choice = await getChoice();
             var information = await getUpdateInformation(); 
-            console.log('pl'+id);
             
             /// this loop is used to update specific information
             for(var ij = 0;ij < rice.length; ij++){
                 console.log(rice[ij].id);
                 if(rice[ij].id === id){
-                    console.log('choice: '+choice);
                     if(choice === '1'){
-                        console.log('one in if');
                         rice[ij].name = information;
                     }
                     else if(choice === '2'){  
-                        console.log('one in else if');
                         rice[ij].price = information;
                     }
                     else{
-                        console.log('in test');
                         rice[ij].weight = information;
                     }
                 }
             }         
-            console.log('hi')    ;
         resolve(rice);
     }
         } catch (error) {

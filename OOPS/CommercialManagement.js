@@ -14,7 +14,7 @@ var stack = new Stack();
 /// Importing models from utility class
 const {Transaction, Customer, Stock} = require('./CommercialData');
 
-/// startUp class for Commercail management
+/// startUp class for Commercial management
 var startUp =async function(){
     var response = null;
     do{
